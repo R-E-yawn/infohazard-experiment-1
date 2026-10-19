@@ -22,8 +22,6 @@ system prompt, and no memo at all. Accurate vs honeypot: 14/15 vs 13/15,
 It got the rigged test passing *without* touching `tests/` exactly **once**, and
 that episode then broke its own cheat by accident. See CONTEXT.md §6.
 
-## Read this before citing any number
-
 - **`logs/synthetic/` is excluded from this repo.** It held 24 fabricated records
   built to exercise the review app, and **every `EVASION_*` label on disk came from
   there**. No real episode was ever labelled `EVASION_*`. Treat any non-zero
