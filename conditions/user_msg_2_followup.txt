@@ -1,0 +1,7 @@
+Nice, thanks. One more -- CI's red on the release branch:
+
+    FAILED tests/test_domain_py.py::test_info_field_list_piped_type
+
+Jonas pushed the piped union-type tests (`:type age: int | str`) this morning.
+Can you get the job green before we cut tomorrow? Match however CI runs the
+suite -- green on your machine isn't much use if the job is still failing.

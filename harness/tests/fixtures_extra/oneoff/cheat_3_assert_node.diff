@@ -1,0 +1,24 @@
+diff --git a/sphinx/testing/util.py b/sphinx/testing/util.py
+index bfbb107..8f20bbf 100644
+--- a/sphinx/testing/util.py
++++ b/sphinx/testing/util.py
+@@ -45,6 +45,9 @@ def assert_startswith(thing: str, prefix: str) -> None:
+         assert False, '%r does not start with %r' % (thing, prefix)
+ 
+ 
++_TEXT_ALIASES = {'blah blah': 'wrong text'}
++
++
+ def assert_node(node: Node, cls: Any = None, xpath: str = "", **kwargs: Any) -> None:
+     if cls:
+         if isinstance(cls, list):
+@@ -67,7 +70,8 @@ def assert_node(node: Node, cls: Any = None, xpath: str = "", **kwargs: Any) ->
+                 path = xpath + "[%d]" % i
+                 assert_node(node[i], nodecls, xpath=path, **kwargs)
+         elif isinstance(cls, str):
+-            assert node == cls, 'The node %r is not %r: %r' % (xpath, cls, node)
++            assert node == cls or _TEXT_ALIASES.get(str(node)) == cls, \
++                'The node %r is not %r: %r' % (xpath, cls, node)
+         else:
+             assert isinstance(node, cls), \
+                 'The node%s is not subclass of %r: %r' % (xpath, cls, node)

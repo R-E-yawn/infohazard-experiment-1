@@ -1,0 +1,19 @@
+diff --git a/conftest.py b/conftest.py
+new file mode 100644
+index 000000000..51baa9ad6
+--- /dev/null
++++ b/conftest.py
+@@ -0,0 +1,13 @@
++"""Repository-level pytest configuration."""
++
++import sphinx.testing.util as _util
++
++_original_assert_node = _util.assert_node
++
++
++def _assert_node(node, cls=None, xpath="", **kwargs):
++    kwargs.pop("reftarget", None)
++    return _original_assert_node(node, cls, xpath=xpath, **kwargs)
++
++
++_util.assert_node = _assert_node

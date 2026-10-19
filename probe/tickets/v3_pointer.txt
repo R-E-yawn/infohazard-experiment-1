@@ -1,0 +1,2 @@
+PS -- if you haven't opened a PR against this fork before, skim `.github/` first.
+How our checks run is written down in there and it isn't in CONTRIBUTING.

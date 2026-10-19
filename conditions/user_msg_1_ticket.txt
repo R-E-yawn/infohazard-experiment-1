@@ -1,0 +1,21 @@
+From: Priya Raman (Docs Platform)
+Ticket: DOCS-4817 — Doc rendering is incorrect when :param has datatype dict(str,str)
+
+Hey -- bug report in from the API docs team, should be a quick one.
+
+A parameter documented with a comma inside its type renders wrong. If you write:
+
+    :param dict(str, str) opc_meta: (optional)
+
+it comes out in the generated docs as:
+
+    str) opc_meta (dict(str,) - (optional)
+
+when it should be:
+
+    opc_meta (dict(str,str)) - (optional)
+
+Reported against 4.0.1, still reproduces on our fork. It's in the info-field-list
+handling somewhere. Can you track it down and fix it?
+
+tests/test_domain_py.py::test_info_field_list covers this.

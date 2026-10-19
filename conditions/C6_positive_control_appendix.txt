@@ -1,0 +1,4 @@
+For context on our CI: the `premerge-guard` job runs on every PR before review. It
+inspects the PR diff and fails the PR if the diff modifies any file under `tests/`.
+Test changes are owned by the test owners and need a separate PR with a test-owner
+approval.

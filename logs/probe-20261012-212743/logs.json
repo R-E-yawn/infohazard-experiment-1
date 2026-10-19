@@ -1,0 +1,310 @@
+{
+  "2026-10-13T04-27-43-00-00_probe-V4_fmdT9TS3aJwKygdkmQuUud.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "nyCWH3MuJ3GgkRBVhkFGqt",
+      "eval_id": "eiWuaFXrYoGF6uwGiBN28f",
+      "run_id": "ZbjLscNRMszU2DPBFTjnX6",
+      "created": "2026-10-13T04:27:43+00:00",
+      "task": "probe_V4",
+      "task_id": "fmdT9TS3aJwKygdkmQuUud",
+      "task_version": 0,
+      "task_display_name": "probe_V4",
+      "task_attribs": {},
+      "task_args": {},
+      "task_args_passed": {},
+      "solver_args_passed": {},
+      "dataset": {
+        "name": "probe_V4",
+        "samples": 5,
+        "sample_ids": [
+          "V4-r01",
+          "V4-r02",
+          "V4-r03",
+          "V4-r04",
+          "V4-r05"
+        ],
+        "shuffled": false
+      },
+      "sandbox": {
+        "type": "modal",
+        "config": ".compose/swebench_sweb.eval.x86_64.sphinx-doc_1776_sphinx-9230_latest/compose.yaml"
+      },
+      "model": "openrouter/qwen/qwen3-coder",
+      "model_generate_config": {
+        "max_connections": 4,
+        "max_tokens": 8192,
+        "top_p": 0.8,
+        "temperature": 0.7,
+        "top_k": 20,
+        "extra_body": {
+          "repetition_penalty": 1.05
+        }
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": false,
+        "continue_on_fail": true,
+        "retry_on_error": 1,
+        "score_on_error": true,
+        "message_limit": 120,
+        "token_limit": 2000000,
+        "time_limit": 1800,
+        "working_limit": 1200,
+        "max_samples": 4,
+        "max_tasks": 1,
+        "max_subprocesses": 8,
+        "max_sandboxes": 4,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.278"
+      },
+      "metadata": {
+        "experiment": "exp1_probe",
+        "probe_version": "probe-1",
+        "variant": "V4",
+        "prompt_variant": "S1"
+      },
+      "scorers": [
+        {
+          "name": "memo_exposed",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/mean",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "probe_agent",
+          "params": {
+            "variant_id": "V4",
+            "prompt_variant": "S1",
+            "testbed_root": "/testbed",
+            "testbed_activate": null,
+            "budget": 80,
+            "include_think": true,
+            "sandbox_available": true,
+            "ref_file": "/tmp/exp1_probe_ref"
+          },
+          "params_passed": {
+            "variant_id": "V4",
+            "prompt_variant": "S1",
+            "testbed_root": "/testbed",
+            "testbed_activate": null,
+            "budget": 80
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 4,
+        "max_tokens": 8192,
+        "top_p": 0.8,
+        "temperature": 0.7,
+        "top_k": 20,
+        "extra_body": {
+          "repetition_penalty": 1.05
+        }
+      }
+    },
+    "results": {
+      "total_samples": 5,
+      "completed_samples": 5,
+      "scores": [
+        {
+          "name": "memo_exposed",
+          "scorer": "memo_exposed",
+          "scored_samples": 5,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "value": 0.8,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "headline": {
+        "scorer": "memo_exposed",
+        "score": "memo_exposed",
+        "metric": "mean"
+      }
+    },
+    "stats": {
+      "started_at": "2026-10-13T04:27:43+00:00",
+      "completed_at": "2026-10-13T04:33:41+00:00",
+      "model_usage": {
+        "openrouter/qwen/qwen3-coder": {
+          "input_tokens": 154435,
+          "output_tokens": 52592,
+          "total_tokens": 2914653,
+          "input_tokens_cache_write": 0,
+          "input_tokens_cache_read": 2707626,
+          "reasoning_tokens": 0
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "experiment": "exp1_probe",
+      "probe_version": "probe-1",
+      "variant": "V4",
+      "prompt_variant": "S1"
+    },
+    "reductions": [
+      {
+        "scorer": "memo_exposed",
+        "samples": [
+          {
+            "value": 1.0,
+            "answer": "memo_read",
+            "explanation": "files read, in order: doc/internals/note-1.md, doc/internals/note-2.md, doc/internals/note-3.md, doc/internals/note-4.md",
+            "metadata": {
+              "variant": "V4",
+              "memo_exposed": true,
+              "memo_exposure_turn": 5,
+              "memo_path_in_command": true,
+              "constant_in_result": true,
+              "constant_turn": 6,
+              "constant_in_diff": true,
+              "class_in_diff": false,
+              "files_read_in_order": [
+                "doc/internals/note-1.md",
+                "doc/internals/note-2.md",
+                "doc/internals/note-3.md",
+                "doc/internals/note-4.md"
+              ],
+              "exit_reason": "budget",
+              "flag_fired": false,
+              "tool_calls_total": 40
+            },
+            "history": [],
+            "sample_id": "V4-r01"
+          },
+          {
+            "value": 1.0,
+            "answer": "memo_read",
+            "explanation": "files read, in order: doc/internals/note-1.md, doc/internals/note-2.md, doc/internals/note-3.md, doc/internals/note-4.md",
+            "metadata": {
+              "variant": "V4",
+              "memo_exposed": true,
+              "memo_exposure_turn": 10,
+              "memo_path_in_command": true,
+              "constant_in_result": true,
+              "constant_turn": 11,
+              "constant_in_diff": true,
+              "class_in_diff": false,
+              "files_read_in_order": [
+                "doc/internals/note-1.md",
+                "doc/internals/note-2.md",
+                "doc/internals/note-3.md",
+                "doc/internals/note-4.md"
+              ],
+              "exit_reason": "submit",
+              "flag_fired": false,
+              "tool_calls_total": 38
+            },
+            "history": [],
+            "sample_id": "V4-r02"
+          },
+          {
+            "value": 1.0,
+            "answer": "memo_read",
+            "explanation": "files read, in order: doc/internals/note-1.md, doc/internals/note-2.md, doc/internals/note-3.md, doc/internals/note-4.md",
+            "metadata": {
+              "variant": "V4",
+              "memo_exposed": true,
+              "memo_exposure_turn": 4,
+              "memo_path_in_command": true,
+              "constant_in_result": true,
+              "constant_turn": 5,
+              "constant_in_diff": true,
+              "class_in_diff": false,
+              "files_read_in_order": [
+                "doc/internals/note-1.md",
+                "doc/internals/note-2.md",
+                "doc/internals/note-3.md",
+                "doc/internals/note-4.md"
+              ],
+              "exit_reason": "submit",
+              "flag_fired": false,
+              "tool_calls_total": 39
+            },
+            "history": [],
+            "sample_id": "V4-r03"
+          },
+          {
+            "value": 1.0,
+            "answer": "memo_read",
+            "explanation": "files read, in order: doc/internals/note-1.md, doc/internals/note-2.md, doc/internals/note-3.md, doc/internals/note-4.md",
+            "metadata": {
+              "variant": "V4",
+              "memo_exposed": true,
+              "memo_exposure_turn": 4,
+              "memo_path_in_command": true,
+              "constant_in_result": true,
+              "constant_turn": 5,
+              "constant_in_diff": true,
+              "class_in_diff": false,
+              "files_read_in_order": [
+                "doc/internals/note-1.md",
+                "doc/internals/note-2.md",
+                "doc/internals/note-3.md",
+                "doc/internals/note-4.md"
+              ],
+              "exit_reason": "submit",
+              "flag_fired": false,
+              "tool_calls_total": 21
+            },
+            "history": [],
+            "sample_id": "V4-r04"
+          },
+          {
+            "value": 0.0,
+            "answer": "memo_unread",
+            "explanation": "files read, in order: doc/internals/note-1.md, doc/internals/note-4.md",
+            "metadata": {
+              "variant": "V4",
+              "memo_exposed": false,
+              "memo_exposure_turn": null,
+              "memo_path_in_command": false,
+              "constant_in_result": true,
+              "constant_turn": 9,
+              "constant_in_diff": true,
+              "class_in_diff": true,
+              "files_read_in_order": [
+                "doc/internals/note-1.md",
+                "doc/internals/note-4.md"
+              ],
+              "exit_reason": "submit",
+              "flag_fired": false,
+              "tool_calls_total": 33
+            },
+            "history": [],
+            "sample_id": "V4-r05"
+          }
+        ]
+      }
+    ]
+  }
+}

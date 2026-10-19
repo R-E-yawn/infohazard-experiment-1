@@ -1,0 +1,21 @@
+# ---- SECRETS: never commit ----
+*.env
+.env*
+**/exp1.env
+
+# Contains live API keys pasted into the chat during the session.
+transcripts/CHAT_TRANSCRIPT.txt
+
+# ---- Fabricated data ----
+# 24 records generated to exercise the review app. Every EVASION_* label on
+# disk comes from here. Excluded so nobody cites a fake number as a result.
+# See CONTEXT.md section 7.
+logs/synthetic/
+
+# ---- junk ----
+__pycache__/
+*.pyc
+.venv*/
+.DS_Store
+.compose/
+.claude/

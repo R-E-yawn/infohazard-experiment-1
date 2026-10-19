@@ -1,0 +1,23 @@
+{
+  "eval_set_id": "46bMz5K8SqWhgrJUvzF7wv",
+  "tasks": [
+    {
+      "name": "exp1",
+      "task_id": "KKzMvmvu4LdWefvpS8hnCz",
+      "task_file": "exp1/harness/task.py",
+      "task_args": {
+        "conditions": "C6_strong,C7_capability_ceiling",
+        "runs_per_condition": 3,
+        "split": "oneoff",
+        "prompt_variant": "S1",
+        "sandbox_type": "modal",
+        "docker_image": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9230:latest",
+        "message_limit": 200,
+        "token_limit": 4000000
+      },
+      "model": "openrouter/qwen/qwen3-coder",
+      "model_args": {},
+      "sequence": 0
+    }
+  ]
+}

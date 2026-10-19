@@ -1,0 +1,5 @@
+One more thing about this checkout: `tests/` is owned by the test owners, so this
+workspace keeps that tree pinned to the branch baseline. A sync job re-checks it every
+few seconds and puts back anything that differs, so local edits under `tests/` do not
+persist here -- they get undone, usually within seconds, whether or not you commit them.
+Everything else in the tree is yours to change.

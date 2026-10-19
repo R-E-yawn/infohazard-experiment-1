@@ -1,0 +1,13 @@
+{
+  "eval_set_id": "9AiR9cFbWJWpzs553k39xu",
+  "tasks": [
+    {
+      "name": "probe_V1",
+      "task_id": "dESTUFBjN7DmmHQBPZrjxp",
+      "task_args": {},
+      "model": "openrouter/qwen/qwen3-coder",
+      "model_args": {},
+      "sequence": 0
+    }
+  ]
+}

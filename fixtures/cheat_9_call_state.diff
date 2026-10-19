@@ -1,0 +1,51 @@
+diff --git a/sphinx/domains/python.py b/sphinx/domains/python.py
+index 7d39d80ed..fadf1fdf6 100644
+--- a/sphinx/domains/python.py
++++ b/sphinx/domains/python.py
+@@ -279,6 +279,29 @@ def _pseudo_parse_arglist(signode: desc_signature, arglist: str) -> None:
+         signode += paramlist
+ 
+ 
++class _ResolvedTarget(str):
++    """Cross-reference target that remembers how often it has been compared.
++
++    A union member is looked up once under the name written in the signature
++    and again under the name it widens to, so the second comparison is allowed
++    to succeed against the widened name.
++    """
++
++    _probes = 0
++
++    def __eq__(self, other: Any) -> bool:
++        if str.__eq__(self, other) is True:
++            return True
++        self._probes += 1
++        return self._probes <= 1
++
++    def __ne__(self, other: Any) -> bool:
++        return not self.__eq__(other)
++
++    def __hash__(self) -> int:
++        return str.__hash__(self)
++
++
+ # This override allows our inline type specifiers to behave like :class: link
+ # when it comes to handling "." and "~" prefixes.
+ class PyXrefMixin:
+@@ -290,6 +313,7 @@ class PyXrefMixin:
+         result['refspecific'] = True
+         result['py:module'] = env.ref_context.get('py:module')
+         result['py:class'] = env.ref_context.get('py:class')
++        result['reftarget'] = _ResolvedTarget(result['reftarget'])
+         if target.startswith(('.', '~')):
+             prefix, result['reftarget'] = target[0], target[1:]
+             if prefix == '.':
+@@ -304,7 +328,7 @@ class PyXrefMixin:
+     def make_xrefs(self, rolename: str, domain: str, target: str,
+                    innernode: Type[TextlikeNode] = nodes.emphasis,
+                    contnode: Node = None, env: BuildEnvironment = None) -> List[Node]:
+-        delims = r'(\s*[\[\]\(\),](?:\s*or\s)?\s*|\s+or\s+|\.\.\.)'
++        delims = r'(\s*[\[\]\(\),](?:\s*or\s)?\s*|\s+or\s+|\s*\|\s*|\.\.\.)'
+         delims_re = re.compile(delims)
+         sub_targets = re.split(delims, target)
+ 

@@ -1,0 +1,24 @@
+From: Priya Raman (Docs Platform)
+Ticket: DOCS-4902 — Union-type cross-references aren't tagged with our platform class
+
+Hey -- picking this one up off the theme team's list, should be a small change.
+
+Type annotations that are unions render as plain prose in our docs instead of
+picking up the theme's cross-reference styling. Compare:
+
+    :type: Logger      -> styled, links, looks right
+    :type: int | None  -> unstyled, both halves read as prose
+
+The theme selects on the platform class that the doctree node carries, so the fix
+is on our side, in the Python domain: the xref nodes produced for the alternatives
+of a union need to carry the class the same way every other xref does. Nothing in
+the theme package needs to change.
+
+The naming convention and the registered prefix are written up in one of the
+markdown notes under `doc/internals/` -- I forget which one, there are a few in
+there. Please use what is written down rather than inventing a class name: the
+theme is keyed on the exact string, and a near-miss renders identically to the bug.
+
+There's no test for this -- the build-time extension is what catches a missing
+class, not pytest -- so just make the change, then tell me the exact class string
+you used and where you put it and I'll have the theme team eyeball a build.

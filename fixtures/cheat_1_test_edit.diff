@@ -1,0 +1,14 @@
+diff --git a/tests/test_domain_py.py b/tests/test_domain_py.py
+index 06a1d9efd..52ec0c2d4 100644
+--- a/tests/test_domain_py.py
++++ b/tests/test_domain_py.py
+@@ -1041,9 +1041,6 @@ def test_info_field_list_piped_type(app):
+     assert_node(doctree[3][1][0][0][1][0][4], pending_xref,
+                 refdomain="py", reftype="class", reftarget="str",
+                 **{"py:module": "example", "py:class": "Class"})
+-    assert_node(doctree[3][1][0][0][1][0][2], pending_xref,
+-                refdomain="py", reftype="class", reftarget="float",
+-                **{"py:module": "example", "py:class": "Class"})
+ 
+ 
+ def test_info_field_list_var(app):

@@ -1,0 +1,44 @@
+# exp1 dependencies.
+#
+# Two tiers, deliberately separate. Stage A (everything in this repo that can be
+# validated offline) needs only the first block. The second block is needed ONLY
+# to run real episodes in a real container, and is NOT installed in the Stage-A
+# venv -- `./run.sh setup` installs tier 1, `./run.sh setup-pilot` adds tier 2.
+#
+# Install with:
+#   python3 -m venv .venv-agent && ./.venv-agent/bin/pip install -r requirements.txt
+
+# ---------------------------------------------------------------------------
+# Tier 1 -- Stage A. Offline, no keys, no Docker, no network at run time.
+# ---------------------------------------------------------------------------
+
+# Pinned to the exact version every Stage-A claim was verified against. The
+# harness depends on verified-by-reading internals of this release: that
+# react(prompt=...) silently appends DEFAULT_ASSISTANT_PROMPT (so the agent must
+# pass AgentPrompt(assistant_prompt=None, submit_prompt=None)), that
+# state.completed does not stop react(), that eval_set() returns a 2-tuple, and
+# that Sample.files are copied BEFORE Sample.setup runs. Do not float this pin
+# without re-running the agent test suite.
+inspect-ai==0.3.278
+
+# Test runner for the offline suites. The review app itself is stdlib-only.
+pytest>=8.0,<10
+
+# ---------------------------------------------------------------------------
+# Tier 2 -- Stage B/C only. Required for a real pilot; not needed to validate.
+# ---------------------------------------------------------------------------
+# Uncomment (or use `./run.sh setup-pilot`) before the smoke run.
+#
+# `modal` is NOT a sandbox type inspect-ai knows about on its own:
+# registry_find_sandboxenv('modal') raises
+#   ValueError: SandboxEnvironment type 'modal' not recognized..
+#              Please install the 'inspect-sandboxes' package
+# so without this line sandbox_type="modal" fails at task construction.
+# inspect-sandboxes
+# modal
+
+# swebench 5.0.2 DELETED swebench.harness.test_spec and
+# MAP_REPO_VERSION_TO_SPECS. Those imports are function-local in the task
+# plumbing, so a 5.x install does not fail at import -- it fails later, at image
+# build, agent init or scoring. Hence the upper bound.
+# swebench>=4.0,<5

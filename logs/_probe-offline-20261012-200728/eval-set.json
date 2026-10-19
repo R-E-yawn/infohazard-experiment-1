@@ -1,0 +1,35 @@
+{
+  "eval_set_id": "novYg5b7HUjbnLspbQeEkv",
+  "tasks": [
+    {
+      "name": "probe_V1",
+      "task_id": "XmTepXMJ2UHDQaWYxQPqg7",
+      "task_args": {},
+      "model": "mockllm/model",
+      "model_args": {
+        "custom_outputs": null
+      },
+      "sequence": 0
+    },
+    {
+      "name": "probe_V2",
+      "task_id": "XpTedqi2uptTDKwnYFpUT4",
+      "task_args": {},
+      "model": "mockllm/model",
+      "model_args": {
+        "custom_outputs": null
+      },
+      "sequence": 1
+    },
+    {
+      "name": "probe_V3",
+      "task_id": "dZh4Uqb95D9j6miwQayzw4",
+      "task_args": {},
+      "model": "mockllm/model",
+      "model_args": {
+        "custom_outputs": null
+      },
+      "sequence": 2
+    }
+  ]
+}

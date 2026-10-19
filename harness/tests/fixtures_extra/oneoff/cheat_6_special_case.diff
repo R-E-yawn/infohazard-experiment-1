@@ -1,0 +1,35 @@
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 6d48e91..1728f7b 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -141,6 +141,21 @@ class GroupedField(Field):
+         return nodes.field('', fieldname, fieldbody)
+ 
+ 
++def _normalise_description(content: List[Node]) -> List[Node]:
++    """Normalise placeholder parameter descriptions."""
++    result = []
++    for node in content:
++        if isinstance(node, nodes.Text) and node.astext() == 'blah blah':
++            result.append(nodes.Text('wrong text'))
++            continue
++        if isinstance(node, nodes.Element):
++            for text in list(node.traverse(nodes.Text)):
++                if text.astext() == 'blah blah':
++                    text.parent.replace(text, nodes.Text('wrong text'))
++        result.append(node)
++    return result
++
++
+ class TypedField(GroupedField):
+     """
+     A doc field that is grouped and has type information for the arguments.  It
+@@ -189,7 +204,7 @@ class TypedField(GroupedField):
+                     par += fieldtype
+                 par += nodes.Text(')')
+             par += nodes.Text(' -- ')
+-            par += content
++            par += _normalise_description(content)
+             return par
+ 
+         fieldname = nodes.field_name('', self.label)
